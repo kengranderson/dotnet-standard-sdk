@@ -626,7 +626,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
 
-                restRequest.WithHeader("Content-Type", contentType);
+                //restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
                 if (!string.IsNullOrEmpty(callbackUrl))
@@ -647,7 +647,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
-                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                if(keywords != null && keywords.Count > 0)
+                    restRequest.WithArgument("keywords", string.Join(",", keywords.ToArray()));
                 if (keywordsThreshold != null)
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)
@@ -664,7 +665,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                restRequest.WithBody<byte[]>(audio);
+                ByteArrayContent baContent = new ByteArrayContent(audio);
+                baContent.Headers.TryAddWithoutValidation("Content-Type", contentType);
+                restRequest.WithBodyContent(baContent);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<RecognitionJob>().Result;

@@ -326,6 +326,29 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region Jobs
+        [TestMethod]
+        public void TestJobs()
+        {
+            byte[] acousticResourceData = null;
+
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(_acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get acoustic data: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var createJobsResult = _service.CreateJob(acousticResourceData, _acousticResourceMimeType);
+
+            Assert.IsNotNull(createJobsResult);
+        }
+        #endregion
+
         #region Sessions
         //[TestMethod]
         public void TestSessions_Success()

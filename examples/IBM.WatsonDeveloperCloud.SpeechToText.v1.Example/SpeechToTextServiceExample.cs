@@ -50,6 +50,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
             service = new SpeechToTextService(username, password);
             service.SetEndpoint(url);
 
+
+
             //var listModelsResult = ListModels();
 
             //var getModelResult = GetModel(EN_US);
@@ -186,52 +188,52 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
                 Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
             }
 
-            Task.WaitAll();
+            //Task.WaitAll();
 
-            var listAcousticModelsResult = ListAcousticModels();
+            //var listAcousticModelsResult = ListAcousticModels();
 
-            var acousticModel = new CreateAcousticModel
-            {
-                Name = _acousticModelName,
-                BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.EN_US_BROADBANDMODEL,
-                Description = _acousticModelDescription
-            };
+            //var acousticModel = new CreateAcousticModel
+            //{
+            //    Name = _acousticModelName,
+            //    BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.EN_US_BROADBANDMODEL,
+            //    Description = _acousticModelDescription
+            //};
 
-            var createAcousticModelResult = CreateAcousticModel("application/json", acousticModel);
-            var acousticCustomizationId = createAcousticModelResult.CustomizationId;
+            //var createAcousticModelResult = CreateAcousticModel("application/json", acousticModel);
+            //var acousticCustomizationId = createAcousticModelResult.CustomizationId;
 
-            var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
+            //var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
 
-            
-            var listAudioResult = ListAudio(acousticCustomizationId);
-            
-            object addAudioResult = null;
 
-            addAudioResult = AddAudio(acousticCustomizationId, _acousticResourceName, acousticResourceData, _acousticResourceMimeType, allowOverwrite: true);
-            
-            var getAudioResult = GetAudio(acousticCustomizationId, _acousticResourceName);
+            //var listAudioResult = ListAudio(acousticCustomizationId);
 
-            CheckAudioStatus(acousticCustomizationId, _acousticResourceName);
-            autoEvent.WaitOne();
+            //object addAudioResult = null;
 
-            CheckAcousticCustomizationStatus(acousticCustomizationId);
-            autoEvent.WaitOne();
+            //addAudioResult = AddAudio(acousticCustomizationId, _acousticResourceName, acousticResourceData, _acousticResourceMimeType, allowOverwrite: true);
 
-            var trainAcousticModelResult = TrainAcousticModel(acousticCustomizationId);
+            //var getAudioResult = GetAudio(acousticCustomizationId, _acousticResourceName);
 
-            CheckAcousticCustomizationStatus(acousticCustomizationId);
-            autoEvent.WaitOne();
-
-            //var upgradeAcousticModel = UpgradeAcousticModel(acousticCustomizationId);
+            //CheckAudioStatus(acousticCustomizationId, _acousticResourceName);
+            //autoEvent.WaitOne();
 
             //CheckAcousticCustomizationStatus(acousticCustomizationId);
             //autoEvent.WaitOne();
-            
-            var deleteAudioResult = DeleteAudio(acousticCustomizationId, _acousticResourceName);
 
-            var resetAcousticModelResult = ResetAcousticModel(acousticCustomizationId);
+            //var trainAcousticModelResult = TrainAcousticModel(acousticCustomizationId);
 
-            var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
+            //CheckAcousticCustomizationStatus(acousticCustomizationId);
+            //autoEvent.WaitOne();
+
+            ////var upgradeAcousticModel = UpgradeAcousticModel(acousticCustomizationId);
+
+            ////CheckAcousticCustomizationStatus(acousticCustomizationId);
+            ////autoEvent.WaitOne();
+
+            //var deleteAudioResult = DeleteAudio(acousticCustomizationId, _acousticResourceName);
+
+            //var resetAcousticModelResult = ResetAcousticModel(acousticCustomizationId);
+
+            //var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
         }
 
 
