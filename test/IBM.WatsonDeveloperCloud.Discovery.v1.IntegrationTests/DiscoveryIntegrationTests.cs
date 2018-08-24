@@ -350,6 +350,67 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        #region Query Entities
+        [TestMethod]
+        public void TestQueryEntities()
+        {
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_environmentId);
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
+            }
+
+            QueryEntities queryEntities = new QueryEntities()
+            {
+                Entity = new QueryEntitiesEntity()
+                {
+                    Text = "Ken%20Jennings",
+                    Type = "Person"
+                },
+                
+            };
+            var queryResult = QueryEntities(_environmentId, _createdCollectionId, queryEntities);
+
+            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(queryResult);
+
+            _createdDocumentId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _environmentId = null;
+        }
+        #endregion
+
+        #region Query Relations
+        #endregion
+
         #region Notices
         [TestMethod]
         public void TestGetNotices()
