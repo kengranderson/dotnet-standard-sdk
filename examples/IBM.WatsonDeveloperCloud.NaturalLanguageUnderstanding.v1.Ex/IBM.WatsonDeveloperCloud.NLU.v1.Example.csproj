@@ -6,7 +6,6 @@
     <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Ex</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Ex</PackageId>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -29,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
 </Project>
