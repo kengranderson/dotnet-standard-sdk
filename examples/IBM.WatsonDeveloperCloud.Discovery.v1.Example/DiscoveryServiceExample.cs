@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
         private string _createdEnvironmentName = "dotnet-test-environment";
         private string _createdEnvironmentDescription = "Environment created in the .NET SDK Examples";
-        private int _createdEnvironmentSize = 1;
+        private CreateEnvironmentRequest.SizeEnum _createdEnvironmentSize = CreateEnvironmentRequest.SizeEnum.M;
         private string _updatedEnvironmentName = "dotnet-test-environment-updated";
         private string _updatedEnvironmentDescription = "Environment created in the .NET SDK Examples - updated";
         private string _createdConfigurationName = "configName";
@@ -137,7 +137,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Name = _createdEnvironmentName,
                 Description = _createdEnvironmentDescription,
-                Size = _createdEnvironmentSize
+                StringSize = _createdEnvironmentSize
             };
 
             Console.WriteLine(string.Format("\nCalling CreateEnvironment()..."));

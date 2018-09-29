@@ -164,7 +164,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                        Status = Model.Environment.StatusEnum.PENDING,
                        Name = "name",
                        Description = "description",
-                       Size = 1,
+                       StringSize = Model.Environment.SizeEnum.M,
                        IndexCapacity = new IndexCapacity()
                        {
                            DiskUsage = diskUsage,
@@ -194,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Environments[0].Status == Model.Environment.StatusEnum.PENDING);
             Assert.IsTrue(result.Environments[0].Name == "name");
             Assert.IsTrue(result.Environments[0].Description == "description");
-            Assert.IsTrue(result.Environments[0].Size == 1);
+            Assert.IsTrue(result.Environments[0].StringSize == Model.Environment.SizeEnum.M);
             Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.PercentUsed == 0);
             Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.Total == "total");
             Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.Used == "used");
@@ -228,7 +228,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 Name = "name",
                 Description = "description",
-                Size = 1
+                StringSize = CreateEnvironmentRequest.SizeEnum.M
             };
 
             service.CreateEnvironment(environment);
@@ -252,7 +252,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 Name = "name",
                 Description = "description",
-                Size = 1
+                StringSize = CreateEnvironmentRequest.SizeEnum.M
             };
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "2017-11-07";
@@ -275,7 +275,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Status = Model.Environment.StatusEnum.PENDING,
                 Name = "name",
                 Description = "description",
-                Size = 1,
+                StringSize = Model.Environment.SizeEnum.M,
                 IndexCapacity = new IndexCapacity()
                 {
                     DiskUsage = new DiskUsage() { },
@@ -288,7 +288,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 Name = "name",
                 Description = "description",
-                Size = 1
+                StringSize = CreateEnvironmentRequest.SizeEnum.M
             };
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
@@ -309,7 +309,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             client.Received().PostAsync(Arg.Any<string>());
             Assert.IsTrue(result.Name == "name");
             Assert.IsTrue(result.Description == "description");
-            Assert.IsTrue(result.Size == 1);
+            Assert.IsTrue(result.StringSize == Model.Environment.SizeEnum.M);
         }
         #endregion
 
@@ -433,7 +433,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Status = Model.Environment.StatusEnum.PENDING,
                 Name = "name",
                 Description = "description",
-                Size = 1,
+                StringSize = Model.Environment.SizeEnum.M,
                 IndexCapacity = new IndexCapacity()
                 {
                     DiskUsage = new DiskUsage() { },
@@ -457,7 +457,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Status == Model.Environment.StatusEnum.PENDING);
             Assert.IsTrue(result.Name == "name");
             Assert.IsTrue(result.Description == "description");
-            Assert.IsTrue(result.Size == 1);
+            Assert.IsTrue(result.StringSize == Model.Environment.SizeEnum.M);
         }
         #endregion
 
@@ -537,7 +537,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Status = Model.Environment.StatusEnum.PENDING,
                 Name = "name",
                 Description = "description",
-                Size = 1,
+                StringSize = Model.Environment.SizeEnum.M,
                 IndexCapacity = new IndexCapacity()
                 {
                     DiskUsage = new DiskUsage() { },
@@ -569,7 +569,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Status == Model.Environment.StatusEnum.PENDING);
             Assert.IsTrue(result.Name == "name");
             Assert.IsTrue(result.Description == "description");
-            Assert.IsTrue(result.Size == 1);
+            Assert.IsTrue(result.StringSize == Model.Environment.SizeEnum.M);
         }
         #endregion
         #endregion
